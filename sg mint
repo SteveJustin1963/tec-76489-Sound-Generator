@@ -1,0 +1,30 @@
+// mint 2.0 code
+// Define port constant
+#012 p!  // SN76489 data port
+
+// Send byte function
+:B
+  p /O  // Output byte to port 0x012
+;
+
+// Play tone function 
+:T
+  // Set frequency for channel 0
+  128 3 + B  // 10000011
+  " B        // Low byte of frequency
+  
+  // Set volume for channel 0
+  144 B      // 10010000 (full volume)
+;
+
+// Main program
+:M
+  440 T       // Play 440 Hz tone
+  1000 (      // Delay ~1 second
+    1000 1 - 
+  )
+  159 B       // Silence channel 0
+;
+
+// Run main program
+M
