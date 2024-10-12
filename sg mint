@@ -4,7 +4,7 @@
 
 // Send byte function
 :B
-  p /O  // Output byte to port 0x012
+  p /O  // Output byte to port 0x012  // pcb, port number triggers WE line
 ;
 
 // Play tone function 
