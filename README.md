@@ -1,7 +1,6 @@
 # tec-76489-Sound-Generator
 
-## Brian Chiha 2022
-- https://www.facebook.com/groups/623556744820045/search/?q=SN76489%20
+
 
 
 
@@ -452,3 +451,10 @@ Additional notes:
 3. Pattern data can be stored in arrays for complex graphics
 4. Timing delays may need adjustment based on your system clock
 5. Add more patterns by creating new row calculation algorithms
+
+
+
+## Brian Chiha's work 2022
+- https://www.facebook.com/groups/623556744820045/search/?q=SN76489%20
+
+
