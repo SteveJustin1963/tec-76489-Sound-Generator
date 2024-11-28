@@ -1,0 +1,77 @@
+
+```mint
+// a = current channel (0-3)
+// b = frequency/attenuation value
+// n = noise type
+
+// A = Write to sound chip
+:A b 255 & /O;
+
+// B = Set tone frequency (channel 0-2)
+:B a ! b !
+   a 4 * 128 |     // latch byte | channel<<4
+   A
+   b 15 & A        // low 4 bits
+   b 4 } A         // high 6 bits
+;
+
+// C = Set attenuation (volume, channel 0-3)
+:C a ! b !
+   a 4 * 144 |    // 1001xxxx pattern
+   b 15 & |       // 4-bit attenuation
+   A
+;
+
+// D = Set noise
+:D n !
+   224            // 11100000 pattern
+   n 3 & |        // noise type (0-3)
+   A
+;
+
+// E = Initialize all channels to silence
+:E 0 15 C         // Channel 0 off
+   1 15 C         // Channel 1 off
+   2 15 C         // Channel 2 off
+   3 15 C         // Noise off
+;
+
+// F = Play middle C (261.63 Hz) example
+:F 0 !            // Channel 0
+   428 B          // Frequency value for middle C
+   0 0 C          // Full volume
+   100()          // Hold note
+   0 15 C         // Silence
+;
+```
+
+Key functions:
+- A: Base write to sound chip port
+- B: Set tone frequency for channels 0-2
+- C: Set volume/attenuation for any channel 
+- D: Configure noise channel
+- E: Initialize/silence all channels
+- F: Example of playing middle C note
+
+Usage examples:
+```mint
+> E              // Initialize chip
+> 0 428 B        // Set channel 0 to middle C frequency
+> 0 0 C          // Set channel 0 to full volume
+> 0 15 C         // Silence channel 0
+> 3 2 D          // Set white noise on noise channel
+```
+/////////////////////////////////////////////////////////////////////////
+The program:
+1. Uses single-letter variables/functions per MINT requirements
+2. Implements key SN76489 features:
+   - Three tone channels
+   - One noise channel
+   - Volume control
+   - Frequency control
+3. Handles the chip's register format:
+   - Latch byte patterns
+   - 4-bit volume control
+   - 10-bit frequency values
+4. Provides initialization and example functions
+
