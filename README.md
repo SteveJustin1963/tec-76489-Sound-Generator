@@ -69,7 +69,7 @@ Usage examples:
 > 0 15 C         // Silence channel 0
 > 3 2 D          // Set white noise on noise channel
 ```
-/////////////////////////////////////////////////////////////////////////
+ 
 The program:
 - Uses single-letter variables/functions per MINT requirements
 - Implements key SN76489 features:
@@ -258,7 +258,7 @@ Pattern Example (Plasma):
 ##  ##  #### ##
 ```
 
-To better utilize this display setup, I can modify the code to be more display-specific:
+ modify the code to be more display-specific:
 
 ```mint
 // H = Hardware-specific display output
