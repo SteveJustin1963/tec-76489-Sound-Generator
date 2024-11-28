@@ -1,0 +1,73 @@
+// Variables:
+// a-d = temp storage for calculations
+// e = effect number
+// f = frame counter
+// p = pattern index
+// t = time value
+// x,y = coordinate values
+
+// A = Initialize sound chip
+:A 0 15 C 1 15 C 2 15 C 3 15 C;
+
+// B = Update sound based on visual pattern
+:B e !
+   f !
+   // Modulate frequency based on pattern
+   f 8 / a !
+   0 a 250 * b !
+   0 b B        // Channel 0 frequency
+   1 b 2 / B    // Channel 1 frequency
+   2 b 3 / B    // Channel 2 frequency
+   // Volume patterns
+   f 3 & b !
+   0 b C        // Channel 0 volume
+   1 b 2 + C    // Channel 1 volume
+   2 b C        // Channel 2 volume
+;
+
+// C = Draw plasma effect
+:C x ! y !
+   x y + t + * 16 / a !  // Complex interference pattern
+   a 256 % b !
+   b x y | | /O          // Output to display
+;
+
+// D = Draw spinning tunnel
+:D x ! y !
+   x 32 - a !
+   y 16 - b !
+   a a * b b * + " * t 8 / + c !
+   c 32 / d !
+   d x y | | /O
+;
+
+// E = Execute one frame of effect
+:E e !
+   // Update time
+   t 1 + t !
+   f 1 + f !
+   
+   // Draw current effect
+   32 (                  // X loop
+      16 (               // Y loop
+         /j /i e         // Pass coordinates to effect
+         e 0 = (C)       // Plasma if e=0
+         e 1 = (D)       // Tunnel if e=1
+      )
+   )
+   
+   // Update sound
+   e f B
+;
+
+// F = Main demo loop
+:F 0 t !                 // Reset time
+   0 f !                 // Reset frame
+   /U (                  // Infinite loop
+      0 E 1000()        // Run plasma
+      1 E 1000()        // Run tunnel
+   )
+;
+
+// Initialize and run
+A F
