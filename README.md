@@ -1,23 +1,19 @@
 # tec-76489-Sound-Generator
 
-## Acknowledgement
-- 10/2022 Brian Chiha
-  - https://www.facebook.com/groups/623556744820045/search/?q=SN76489%20
+## Brian Chiha 2022
+- https://www.facebook.com/groups/623556744820045/search/?q=SN76489%20
 
 
 
-
-## MINT program to interface with the TI SN76489 sound chip 
-based on the Wikipedia article. https://en.wikipedia.org/wiki/Texas_Instruments_SN76489
-
-`wiki-code-mint`
+## Wikipedia article MINT code for TI SN76489 sound chip 
+- https://en.wikipedia.org/wiki/Texas_Instruments_SN76489
+- `wiki-code-mint`
 
 
 ##  Audio/visual effect generator 
 - combining the SN76489 sound chip with an output display
 - to create synchronized music and patterns!
-
-
+- `Audiovisual-mint`
 
 This creates an extreme audiovisual demo that:
 
@@ -44,7 +40,7 @@ This creates an extreme audiovisual demo that:
    - Multi-channel sound synthesis
    - Synchronized audio/visual patterns
 
-`Audiovisual-mint`
+
 
 To run it, simply execute:
 ```mint
@@ -70,6 +66,4 @@ This pushes MINT's capabilities in:
 4. Real-time synchronization
 5. Memory usage
 6. Processing efficiency
-
-It's a complete demoscene-style production in under 100 lines of MINT code! The result is a hypnotic combination of sight and sound that demonstrates the power of creative programming even with limited resources.
 
